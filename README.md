@@ -1,38 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Hi there 🖐️,
 
-## Getting Started
+Over the last few weeks I have explored Next.js and decided to re purpose an old Movie project that I did not get to finish.
 
-First, run the development server:
+- The app is wrapped with AuthContext which gives the current user access to the app, which will is under pages/home.js.
+- From there, the user can choose which genre they would like and the amount of time they prefer to sit and watch a movie for.
+- Once completed, a call to the movie database API will be made and will return movies based on their search params.
+- Users can also create their own lists and add the movies they like to whatever list(s) they created and can remove once completed.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+First issue: Not properly understanding server versus client side rendering.
+  - The form at the beginning of the home.js is intended for the client but I did not give Next.js permission to render on the client side which was 
+    obviously throwing errors once there was client side interaction with the form.
+  - Since this won't be a massive application, I decided to give client access to the entire document.js which fixed the problem. Once app is completed 
+    I will explore which pages/components can have access to the client side.
+    
+Second issue: Specifying which domains that are allowed to be used as image paths.
+  - From the API call an image is returned for each movie. The hostname used for the image was not configured under images in the next.config.js file.
+  - A quick debug and applying new permissions to the next.config.js file fixed the issue and I learned something new!
