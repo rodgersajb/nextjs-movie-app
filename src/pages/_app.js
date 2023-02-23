@@ -1,5 +1,4 @@
 import { AuthContextProvider } from "@/Context/AuthContext";
-import "@/styles/globals.css";
 import Layout from "@/Components/Layout";
 
 export default function App({ Component, pageProps, children }) {
